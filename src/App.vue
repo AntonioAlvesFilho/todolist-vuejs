@@ -1,12 +1,35 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import axios from 'axios'
+</script>
+
+<script>
+export default {
+  name: 'App',
+  data() {
+    return {
+      todos: []
+    }
+  },
+
+  created() {
+    axios
+      .get('http://localhost:3000/tarefas')
+      .then((this.todos = (respose) => Response.data))
+      .then(console.log(this.todos))
+  }
+}
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
+    <img
+      alt="Vue logo"
+      class="logo"
+      src="@/assets/logo.svg"
+      width="125"
+      height="125" />
     <div class="wrapper">
       <HelloWorld msg="You did it!" />
 
@@ -14,6 +37,7 @@ import HelloWorld from './components/HelloWorld.vue'
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
       </nav>
+      <a href="#" class="btn btn-secondary active" role="button">Button</a>
     </div>
   </header>
 
